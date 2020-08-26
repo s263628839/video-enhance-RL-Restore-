@@ -10,7 +10,6 @@ from .ops import linear, conv2d, clipped_error
 from .replay_memory import ReplayMemory
 from .utils import data_reformat, img2patch
 from tqdm import tqdm
-import time
 
 class Agent(BaseModel):
     def __init__(self, config, environment, sess):
@@ -534,7 +533,7 @@ class Agent(BaseModel):
                     if self.is_save:
                         name = save_path + base_name
                         # save the initial image
-                        cv2.imwrite(name + '.png', (my_img[:,:,::-1] * 255).round().clip(0, 255).astype(np.uint8))
+                        cv2.imwrite(name + '.png', my_img[:,:,::-1] * 255)
 
 
                 # predict action
@@ -547,18 +546,17 @@ class Agent(BaseModel):
 
                 # save images
                 if self.is_save:
-                    #name += '_' + str(action + 1)
-                    save_img = (my_img[:,:,::-1] * 255).round().clip(0, 255).astype(np.uint8)
+                    name += '_' + str(action + 1)
+                    save_img = my_img[:,:,::-1] * 255
                     cv2.imwrite(name + '.png', save_img)
 
             # update my test image
             print('Image %s processed' % base_name)
-            if base_name == "0120":
-                print(save_img)
             my_img, base_name = self.env.update_test_mine()
 
         print('Done!')
         return
+
 
     def test_video(self, my_img): # total 50-60ms
         actions = []

@@ -9,12 +9,12 @@ class AgentConfig(object):
     lstm_in = 32
 
     # test model
-    play_model = '/userhome/model/vidioEnhanceModel'
+    play_model = 'models/'
     is_save = True
 
     # train model
-    save_dir = '/userhome/model/vidioEnhanceModel/save'
-    log_dir = '/userhome/logs/vidioEnhance'
+    save_dir = 'models/save/'
+    log_dir = 'logs/'
     memory_size = 500000
     learn_start = 5000
     test_step = 1000
@@ -47,8 +47,9 @@ class EnvironmentConfig(object):
     screen_channel = 3
     dataset = 'moderate'  # mild / moderate / severe
     test_batch = 2048  # test how many patches at a time
-    stop_step = 2
+    stop_step = 3
     reward_func = 'step_psnr_reward'
+    
     input_name = 'input/input.mp4'
     output_name = 'results/output.mp4'
 

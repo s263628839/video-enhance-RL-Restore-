@@ -1,6 +1,6 @@
 clear;close all;
 %% settings
-folder = '/Users/sam/Downloads/video_enhance-master/data/train/DIV2K/';
+folder = './DIV2K/';
 savepath = 'train.h5';
 size_input = 63;
 size_label = 63;
@@ -9,6 +9,9 @@ blur_sig = 0:0.5:5;
 noi_sig = 0:5:50;
 jpg_q = [100,80,60,50,40:-5:10];
 level = [12, 17];
+% moderate: [12, 17]
+%     mild: [9, 11]
+%   severe: [18, 20]
 
 %% initialization
 data = zeros(size_input, size_input, 3, 1);
@@ -21,7 +24,7 @@ N = 1;
 
 %% generate data
 filepaths = dir(fullfile(folder,'*.png'));
-%% generate data    
+    
 for i = 1:length(filepaths)
     if mod(i,10)==0
         disp(i);
@@ -71,7 +74,6 @@ for i = 1:length(filepaths)
                     label(:, :, :, count) = subim_label;
                 end
             end
-           
         end
     end
 end
@@ -99,4 +101,4 @@ for batchno = 1:floor(count/chunksz)
     created_flag = true;
     totalct = curr_dat_sz(end);
 end
-%h5disp(savepath);
+h5disp(savepath);
