@@ -1,5 +1,7 @@
 # 视频增强
 
+[RL-Restore](https://github.com/yuke93/RL-Restore)
+
 
 ## 内容
 1. [增强模型](#增强模型)
@@ -20,7 +22,7 @@
 ## 前期准备
 ### 1. 云脑上选择镜像
 ```
-172.168.202.50:5000/user-images/wangshsh
+dockerhub.pcl.ac.cn:5000/user-images/wangshsh:20200821100842
 ```
 
 如果要进行训练，则还需要安装`matlab`
@@ -28,7 +30,7 @@
 
 ## 训练
 ### 1. 数据集下载
-- 数据集下载地址 [Baidu Cloud](https://pan.baidu.com/s/1RXTcfI-mne5YZh3myQcjzQ)
+- 数据集下载地址 [Baidu Cloud](https://pan.baidu.com/s/1CD-E5dUMsMswvCVQhe5PeQ)
 - 移动数据集到`data/train`目录下
 
 ### 2. 生成训练数据
@@ -49,7 +51,7 @@ python main.py --is_train True
 - 放置待增强视频到`./input`目录下，该目录下已放一个待增强视频datouerzi.mp4
 - 执行命令
 ```
-python test_video.py --input_name input/input.mp4 --output_name results/output.mp4
+python test_video.py --input_name input/datouerzi.mp4 --output_name results/output.mp4
 ```
 在上述命令中，input.mp4为待增强的视频文件名，增强后的结果视频保存在`./results`目录下，文件名为output.mp4
 
